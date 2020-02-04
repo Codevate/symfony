@@ -208,17 +208,11 @@ namespace :deploy do
 end
 ```
 
-If you want to execute a command on a host with a given role you can use the Capistrano
-`on` DSL, additionally using `within` from Capistrano will change the directory
+If you want to execute a command on a host with a given role that's different to
+`:symfony_roles` or `:symfony_deploy_roles`, you can pass it as the third argument:
 
 ```ruby
-namespace :deploy do
-  task :migrate do
-    on roles(:db) do
-      symfony_console('doctrine:migrations:migrate', '--no-interaction')
-    end
-  end
-end
+symfony_console('doctrine:migrations:migrate', '--no-interaction', :db)
 ```
 
 ### Using composer
